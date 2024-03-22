@@ -1,10 +1,13 @@
 import "dotenv/config";
 import express from "express";
+import mongoose from "mongoose";
+import blogRouter from "./routes/blogRoutes.js";
 
+const PORT = process.env.PORT || 5000;
 const app = express();
 
-app.get("/", (req, res) => {
-  res.status(200).send("Hello!");
-});
+mongoose.connect(process.env.MONGO_URI);
 
-app.listen(process.env.PORT);
+app.use("/api/v1/blogs", blogRouter);
+
+app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
