@@ -54,10 +54,16 @@ router.get("/google/login", (req, res) => {
 });
 
 router.get("/logout", async (req, res) => {
-  // Delete cookies stored on client-side
-  /* clearCookie does not send response and not close connection. 
+  try {
+    // Revokes access token and clears the credentials object
+    await oAuth2Client.revokeCredentials();
+    // Delete cookies stored on client-side
+    /* clearCookie does not send response and not close connection. 
   We must send back response, or the cookie won't be deleted. */
-  res.status(204).clearCookie("id_token").end();
+    res.status(204).clearCookie("id_token").end();
+  } catch (err) {
+    res.status(403).json({ error: "Unable to logout" });
+  }
 });
 
 export default router;
