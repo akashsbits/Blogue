@@ -32,6 +32,16 @@ app.use(async (req, res, next) => {
 });
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/blogs", blogRouter);
+// Check APIs health
+app.use("/api/v1/health", (req, res) => {
+  const data = {
+    uptime: process.uptime(),
+    message: "Ok",
+    timestamp: Date.now(),
+  };
+
+  res.status(200).json(data);
+});
 // Catch 404 error
 app.use((req, res) => res.status(404).json({ error: "Not found" }));
 
