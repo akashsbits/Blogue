@@ -1,5 +1,4 @@
 import express from "express";
-import mongoose from "mongoose";
 import isLoggedIn from "../middlewares/isLoggedIn.js";
 import { getAllBlogs, getABlog, addABlog } from "../controllers/blog.js";
 

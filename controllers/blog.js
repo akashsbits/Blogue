@@ -1,4 +1,3 @@
-import User from "../models/User.js";
 import Blog from "../models/blog.js";
 
 const getAllBlogs = async (req, res) => {
@@ -27,7 +26,7 @@ const getABlog = async (req, res) => {
 const addABlog = async (req, res) => {
   const { title, content } = req.body;
 
-  const blog = new User({ title, content });
+  const blog = new Blog({ title, content, googleId: req.user.sub });
 
   try {
     await blog.save();
