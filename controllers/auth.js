@@ -38,7 +38,7 @@ const getAuthTokens = async (req, res) => {
 
     // Send cookie to the client-side containing id_token
     res
-      .status(200)
+      .status(201)
       .cookie("id_token", oAuth2Client.credentials.id_token, {
         maxAge: process.env.COOKIE_EXPIRY,
         //   secure: true, // the cookie is only sent over HTTPS

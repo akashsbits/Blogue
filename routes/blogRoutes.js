@@ -1,11 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
 import isLoggedIn from "../middlewares/isLoggedIn.js";
+import { getAllBlogs, getABlog, addABlog } from "../controllers/blog.js";
 
 const router = express.Router();
 
-router.get("/", isLoggedIn, (req, res) => {
-  res.status(200).json({ blogs: ["First Blog", "Second Blog"] });
-});
+router.get("/", isLoggedIn, getAllBlogs);
+
+router.get("/:id", isLoggedIn, getABlog);
+
+router.post("/", isLoggedIn, addABlog);
 
 export default router;
