@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import verifyToken from "./services/verify-token.js";
 import authRouter from "./routes/authRoutes.js";
 import blogRouter from "./routes/blogRoutes.js";
+import "./services/cache.js";
 
 const PORT = process.env.PORT || 5000;
 const app = express();

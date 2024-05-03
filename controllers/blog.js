@@ -2,11 +2,13 @@ import Blog from "../models/blog.js";
 
 const getAllBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find({ googleId: req.user.sub });
+    const blogs = await Blog.find({ googleId: req.user.sub }).cache({
+      key: req.user.sub,
+    });
 
     res.status(200).json({ blog: blogs });
   } catch (err) {
-    res.status(500).json({ error: "Unable to get blogs" });
+    res.status(500).json({ error: `Unable to get blogs` });
   }
 };
 
